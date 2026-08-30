@@ -1,0 +1,132 @@
+ID,Item Name,Category
+2,Sunfeast Dark Fantasy Choco Fills,Biscuits & Cookies
+3,Sunfeast Dark Fantasy Bourbon,Biscuits & Cookies
+4,Britannia Bourbon,Biscuits & Cookies
+5,Parle-G,Biscuits & Cookies
+6,Britannia Good Day Butter,Biscuits & Cookies
+7,Britannia Good Day Cashew,Biscuits & Cookies
+8,Britannia Good Day Choco Chip,Biscuits & Cookies
+9,Parle Hide & Seek Choco Biscuits,Biscuits & Cookies
+10,Britannia Marie Gold,Biscuits & Cookies
+11,Parle Monaco Classic,Biscuits & Cookies
+12,Parle Krack Jack,Biscuits & Cookies
+13,Britannia Little Hearts,Biscuits & Cookies
+14,Unibic Choco Chip Cookies,Biscuits & Cookies
+15,Unibic Fruit & Nut Cookies,Biscuits & Cookies
+16,Unibic Butter Cookies,Biscuits & Cookies
+17,McVitie's Digestive Cookies,Biscuits & Cookies
+18,Britannia NutriChoice,Biscuits & Cookies
+19,Britannia Treat Burst,Biscuits & Cookies
+20,Britannia Jim Jam,Biscuits & Cookies
+21,Britannia Tiger Krunch,Biscuits & Cookies
+22,Britannia 50-50,Biscuits & Cookies
+23,Maggi 2-Minute Noodles,Instant Noodles & Soups
+24,Yippee Magic Masala Noodles,Instant Noodles & Soups
+25,Knorr Veg Soup,Instant Noodles & Soups
+26,Nissin Top Ramen Masala Noodles,Instant Noodles & Soups
+27,Nissin Top Ramen Chicken Noodles,Instant Noodles & Soups
+28,Buldak Cheese Spicy Ramen,Instant Noodles & Soups
+29,Buldak Original Spicy Ramen,Instant Noodles & Soups
+30,Buldak Carbonara Spicy Ramen,Instant Noodles & Soups
+31,Kurkure Masala Munch,Snacks & Chips
+32,Haldiram's Aloo Bhujia,Snacks & Chips
+33,Haldiram's Navratan Mix,Snacks & Chips
+34,Haldiram's Masala Peanuts,Snacks & Chips
+35,Haldiram's Moong Dal,Snacks & Chips
+36,Haldiram's Khatta Meetha,Snacks & Chips
+37,Bingo Mad Angles,Snacks & Chips
+38,Bingo Tedhe Medhe,Snacks & Chips
+39,Lays American Style Cream & Onion,Snacks & Chips
+40,Lays Magic Masala,Snacks & Chips
+41,Lays Classic Salted,Snacks & Chips
+42,Lays Tangy Twist,Snacks & Chips
+43,Lays Hot & Sweet Chili,Snacks & Chips
+44,Crax Fritts,Snacks & Chips
+45,Pringles Original,Snacks & Chips
+46,Pringles Sour Cream & Onion,Snacks & Chips
+47,Pringles BBQ,Snacks & Chips
+48,Pringles Pizza,Snacks & Chips
+49,Doritos Nacho Cheese,Snacks & Chips
+50,Doritos Cool Ranch,Snacks & Chips
+51,Doritos Spicy Sweet Chili,Snacks & Chips
+52,Uncle Chipps Spicy Treats,Snacks & Chips
+53,Uncle Chipps Plain Salted,Snacks & Chips
+54,Bingo Masala Massacre,Snacks & Chips
+55,Bingo Killin' Cream & Onion,Snacks & Chips
+56,Bingo Thrilling Tomato,Snacks & Chips
+57,Pepsi,Beverages
+58,Coca-Cola,Beverages
+59,Thums Up,Beverages
+60,Sprite,Beverages
+61,Fanta,Beverages
+62,Mountain Dew,Beverages
+63,Mirinda,Beverages
+64,7UP,Beverages
+65,Red Bull Energy Drink,Beverages
+66,Appy Fizz,Beverages
+67,Frooti Mango Drink,Beverages
+68,Monster Energy Drink,Beverages
+69,Limca,Beverages
+70,Slice Mango Drink,Beverages
+71,Maaza Mango Drink,Beverages
+72,Tropicana Orange Juice,Beverages
+73,Sting Energy Drink,Beverages
+74,Cadbury Dairy Milk,Chocolates & Confectionery
+75,Cadbury Dairy Milk Silk,Chocolates & Confectionery
+76,Cadbury Bournville,Chocolates & Confectionery
+77,Cadbury Gems,Chocolates & Confectionery
+78,Cadbury Perk,Chocolates & Confectionery
+79,Cadbury Fuse,Chocolates & Confectionery
+80,Cadbury 5 Star,Chocolates & Confectionery
+81,Nestle KitKat,Chocolates & Confectionery
+82,Nestle Munch,Chocolates & Confectionery
+83,Nestle Milkybar,Chocolates & Confectionery
+84,Amul Dark Chocolate,Chocolates & Confectionery
+85,Amul Milk Chocolate,Chocolates & Confectionery
+86,Amul Chocominis,Chocolates & Confectionery
+87,Snickers,Chocolates & Confectionery
+88,Mars Chocolate Bar,Chocolates & Confectionery
+89,Twix,Chocolates & Confectionery
+90,Bounty Chocolate Bar,Chocolates & Confectionery
+91,Ferrero Rocher,Chocolates & Confectionery
+92,Toblerone,Chocolates & Confectionery
+93,Kinder Joy,Chocolates & Confectionery
+94,Kinder Bueno,Chocolates & Confectionery
+95,Hershey's Kisses,Chocolates & Confectionery
+96,Hershey's Milk Chocolate,Chocolates & Confectionery
+97,Mentos,Chocolates & Confectionery
+98,Skittles,Chocolates & Confectionery
+99,Kellogg's Chocos,Breakfast & Cereals
+100,Kellogg's Corn Flakes,Breakfast & Cereals
+101,Quaker Oats,Breakfast & Cereals
+102,Saffola Masala Oats,Breakfast & Cereals
+103,Kellogg's Muesli,Breakfast & Cereals
+104,Yogabar High Protein Oats,Breakfast & Cereals
+105,Britannia Gobbles Bar Cake,Bakery
+106,Britannia Treat Croissant,Bakery
+107,Bru Instant Coffee,Beverages
+108,Nescafe Classic Coffee,Beverages
+109,Nescafe Gold Coffee,Beverages
+110,Kissan Tomato Ketchup,Sauces & Spreads
+111,Ching's Secret Schezwan Chutney,Sauces & Spreads
+112,Nutella Hazelnut Spread,Sauces & Spreads
+113,Pintola Peanut Butter,Sauces & Spreads
+114,Dabur Honey,Sauces & Spreads
+115,Hershey's Chocolate Syrup,Sauces & Spreads
+116,Veeba Mayonnaise,Sauces & Spreads
+117,Veeba Peanut Butter Crunchy,Sauces & Spreads
+118,Maggi Hot & Sweet Sauce,Sauces & Spreads
+119,Kissan Mixed Fruit Jam,Sauces & Spreads
+120,Mapro Mango Jam,Sauces & Spreads
+121,Mapro whole Strawberry Jam,Sauces & Spreads
+122,Mapro Butterscotch Flavoured Apple Crush,Beverages
+123,Mapro Alphonso Mango Crush,Beverages
+124,Mapro Whole Strawberry Crush,Beverages
+125,Hamdard Rooh Afza,Beverages
+126,Haldiram's Bhujia Sev,Snacks & Chips
+127,Haldiram's All in One,Snacks & Chips
+128,Paper Boat Aamras,Beverages
+129,Paper Boat Jaljeera,Beverages
+130,Tata Tea Gold,Beverages
+132,Red Label Natural Care Tea,Beverages
+133,Cadbury Shots,Chocolates & Confectionery
