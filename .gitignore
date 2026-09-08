@@ -3,3 +3,4 @@ Shelf_fish_backend/train/all_images/*
 all_images\
 old.py
 venv\
+timeouts\

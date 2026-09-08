@@ -108,7 +108,7 @@ def scrape_images(driver, query, item, target_num):
             last_height = driver.execute_script("return document.body.scrollHeight")
             while True:
                 driver.execute_script("window.scrollTo(0, 800);")
-                time.sleep(uniform(0.3, 0.5))
+                time.sleep(uniform(0.4, 0.6))
                 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
                 time.sleep(uniform(0.4, 0.8))
                 try:
@@ -131,7 +131,6 @@ def scrape_images(driver, query, item, target_num):
 
             time.sleep(uniform(0.1, 0.5))
 
-            images = driver.find_elements(By.XPATH, XPath)
             all_src = get_valid_src(driver)
             
             def fetch_image(src):
@@ -153,24 +152,26 @@ def scrape_images(driver, query, item, target_num):
             
             saved_count = 0
 
-            with ThreadPoolExecutor(max_workers=16) as executor:
-                future_to_src = {executor.submit(fetch_image, src): src for src in all_src}
+            executor = ThreadPoolExecutor(max_workers=20)
+            future_to_src = {executor.submit(fetch_image, src): src for src in all_src}
 
+            try:
                 for future in as_completed(future_to_src):
                     if saved_count >= target_num:
+                        for f in future_to_src:
+                            f.cancel()
                         break
-
                     img_data = future.result()
                     if img_data:
-                        saved_count += 1
+                        saved_count+=1
                         filename_1 = f"images/{item}/{query}_{str(saved_count).zfill(6)}.jpg"
                         filename_2 = f"all_images/{query}_{str(saved_count).zfill(6)}.jpg"
-
-                        with open(filename_1, "wb") as f1:
+                        with open(filename_1, "wb") as f1, open(filename_2, "wb") as f2:
                             f1.write(img_data)
-                            shutil.copyfile(filename_1, filename_2)
-                        print(f"[{saved_count}/{target_num}] Downloaded {filename_1}")
-                            
+                            f2.write(img_data)
+                        print(f"Saved image {saved_count} for {item} as {filename_1}")
+            finally:
+                executor.shutdown(wait=False, cancel_futures=True)
 
                 
 
@@ -241,8 +242,8 @@ def remove_item(path, item):
 if __name__ == "__main__":
     PATH = "list.csv"
 
-    # item_list = load_items_from_csv(PATH)
-    item_list = ["Oreo"]
+    item_list = load_items_from_csv(PATH)
+    # item_list = ["Oreo"] #for testing
 
     if not item_list:
         print(f"No item found in {PATH}")
