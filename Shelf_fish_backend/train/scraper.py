@@ -13,6 +13,7 @@ import requests
 import itertools
 import functools
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import shutil
 
 search_queries = [
     "package image transparent background",
@@ -23,7 +24,7 @@ search_queries = [
     "on white background",
     "on table",
     "back label",
-    "addertisement",
+    "advertisement",
 ]
 XPath = f"//div[@role='main']//img[@data-deferred or @src]"
 
@@ -31,6 +32,8 @@ times = []
 fastest_time = 0
 slowest_time = float('inf')
 average_time = 0
+
+
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
@@ -73,6 +76,17 @@ def get_valid_count(driver, images):
             continue
     return valid_count
 
+def get_valid_src(driver, min_dim=100):
+    js = """
+    const minDim = arguments[0];
+    const imgs = Array.from(document.querySelectorAll("div[role='main'] img"));
+    return imgs
+        .filter(img => img.naturalWidth >= minDim && img.naturalHeight >= minDim)
+        .map(img => img.src)
+        .filter(src => src && (src.startsWith("http") || src.startsWith("data:image")));
+    """
+    return driver.execute_script(js, min_dim);
+
 @time_execution
 def scrape_images(driver, query, item, target_num):
     os.makedirs(f"images/{item}", exist_ok=True)
@@ -93,8 +107,10 @@ def scrape_images(driver, query, item, target_num):
             print(f"Search Results loaded for {item}")
             last_height = driver.execute_script("return document.body.scrollHeight")
             while True:
+                driver.execute_script("window.scrollTo(0, 800);")
+                time.sleep(uniform(0.3, 0.5))
                 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                time.sleep(uniform(0.1, 0.5))
+                time.sleep(uniform(0.4, 0.8))
                 try:
                     show_more = driver.find_element(By.XPATH, "//input[@type='button' and @value='Show more results'] | //button[contains(., 'Show more results')] | //input[@type='button' and @value='Next'] | //button[contains(., 'Next')] | //input[@type='button' and @value='More results'] | //button[contains(., 'More results')] | //input[@type='button' and @value='See more anyway'] | //button[contains(., 'See more anyway')] | //span[contains(., 'Show more results')] | //span[contains(., 'Next')] | //span[contains(., 'More results')] | //span[contains(., 'See more anyway')]")
                     if show_more.is_displayed():
@@ -102,33 +118,21 @@ def scrape_images(driver, query, item, target_num):
                         print(f"Clicked 'Show more results' for {item}")
                 except NoSuchElementException:
                     pass
-                current_images = driver.find_elements(By.XPATH, XPath)
-                valid_count = get_valid_count(driver, current_images)
-                if valid_count >= target_num:
-                    print(f"Found {valid_count} valid images for {item}. Stopping scroll...")
+                valid_srcs = get_valid_src(driver)
+                if len(valid_srcs) >= target_num:
+                    print(f"Found {len(valid_srcs)} valid images for {item}. Stopping scroll...")
                     break
                 new_height = driver.execute_script("return document.body.scrollHeight")
                 if new_height == last_height:
                     print(f"Reached the end of the page for {item}. Stopping scroll...")
-                    print(f"Found {valid_count} valid images for {item}, target is {target_num}.")
+                    print(f"Found {len(valid_srcs)} valid images for {item}, target is {target_num}.")
                     break
                 last_height = new_height
 
-            time.sleep(uniform(0.2, 0.8))
+            time.sleep(uniform(0.1, 0.5))
 
             images = driver.find_elements(By.XPATH, XPath)
-
-            all_src = []
-            for img in images:
-                try:
-                    h = driver.execute_script("return arguments[0].naturalHeight;", img)
-                    w = driver.execute_script("return arguments[0].naturalWidth;", img)
-                    if w >=100 and h >= 100:
-                        src = img.get_attribute("src")
-                        if src and (src.startswith("http") or src.startswith("data:image")):                        
-                            all_src.append(src)
-                except Exception:
-                    continue
+            all_src = get_valid_src(driver)
             
             def fetch_image(src):
                 if src.startswith("data:image"):
@@ -162,9 +166,9 @@ def scrape_images(driver, query, item, target_num):
                         filename_1 = f"images/{item}/{query}_{str(saved_count).zfill(6)}.jpg"
                         filename_2 = f"all_images/{query}_{str(saved_count).zfill(6)}.jpg"
 
-                        with open(filename_1, "wb") as f1, open(filename_2, "wb") as f2:
+                        with open(filename_1, "wb") as f1:
                             f1.write(img_data)
-                            f2.write(img_data)
+                            shutil.copyfile(filename_1, filename_2)
                         print(f"[{saved_count}/{target_num}] Downloaded {filename_1}")
                             
 
