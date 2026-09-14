@@ -64,18 +64,6 @@ def time_execution(func):
         return result
     return wrapper
 
-def get_valid_count(driver, images):
-    valid_count = 0
-    for img in images:
-        try:
-            w = driver.execute_script("return arguments[0].naturalWidth;", img)
-            h = driver.execute_script("return arguments[0].naturalHeight;", img)
-            if w >=100 and h >=100:
-                valid_count +=1
-        except Exception as e:
-            continue
-    return valid_count
-
 def get_valid_src(driver, min_dim=100):
     js = """
     const minDim = arguments[0];
@@ -104,7 +92,7 @@ def scrape_images(driver, query, item, target_num):
             WebDriverWait(driver, 15).until(
                 EC.presence_of_element_located((By.XPATH, "//div[@role='main']"))
             )
-            print(f"Search Results loaded for {item}")
+            print(f"Search Results loaded for {query}")
             last_height = driver.execute_script("return document.body.scrollHeight")
             while True:
                 driver.execute_script("window.scrollTo(0, 800);")
@@ -275,6 +263,7 @@ if __name__ == "__main__":
 
     finally:
         print("Closing browser instance")
+        driver.quit()
         end_time_global = time.perf_counter()
 
     total_time_global = end_time_global - start_time_global
