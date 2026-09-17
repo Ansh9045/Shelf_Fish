@@ -5,3 +5,4 @@ venv\
 Shelf_fish_backend/train/timeouts/*
 Shelf_fish_backend/train/not_searched_queries.csv
 __pycache__\
+.env
