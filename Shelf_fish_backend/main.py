@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from database.database import init_db
 from database.router import router as item_router
+from auth.router import router as auth_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -11,9 +12,10 @@ async def lifespan(app: FastAPI):
     print("App closed")
 
 
-app = FastAPI(title= "Self-fish" ,lifespan=lifespan)
+app = FastAPI(title= "Shelf-fish" ,lifespan=lifespan)
 
 app.include_router(item_router)
+app.include_router(auth_router)
 
 @app.get("/")
 def read_root():
