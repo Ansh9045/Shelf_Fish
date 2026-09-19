@@ -6,6 +6,7 @@ class ItemBase(SQLModel):
     quantity: int = Field(default=0, ge=0)
     price: float = Field(gt=0)
     category: str
+    img_url: str
       
 class Item(ItemBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
