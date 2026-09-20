@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "axios": "^1.20.0",
     "expo": "~57.0.24",
     "expo-camera": "~57.0.5",
     "expo-image-picker": "~57.0.19",
