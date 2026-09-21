@@ -15,6 +15,11 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title= "Shelf-fish" ,lifespan=lifespan)
 
+origins = [
+    "http://10.55.131.83:8081/",
+    "http://10.55.131.221/",
+]
+
 app.include_router(item_router)
 app.include_router(auth_router)
 app.include_router(detection_router)
