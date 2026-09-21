@@ -10,7 +10,7 @@ const uploadImage = async (uri) => {
     
     const response = await api.post('/detections/', formData, {headers:{
         'Content-Type':'multipart/form-data',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTc4OTk4MDQ4OX0._otf2XtF1qeffAPsild6UgwvV9v5wRZQG-vlHZds6Ww'
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTc4OTk4NTgxNn0.k17WU2LGSFj4uHNiJvgYdxUxqFO1n7cxuBMDIRYyGHM'
     }})
     return response.data
 }
