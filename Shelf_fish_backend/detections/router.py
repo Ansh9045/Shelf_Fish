@@ -7,6 +7,9 @@ from auth.auth import get_current_user
 from auth.models import User
 from .models import Detection, DetectionRead
 from .detect import identify_product
+from .storage import upload_image
+import asyncio
+
 
 router = APIRouter(prefix="/detections", tags=["detections"])
 
@@ -26,8 +29,8 @@ async def scan_product(
         )
     
     img_bytes = await file.read()
-    raw = await identify_product(img_bytes)
-    detection = Detection( name = raw.name, brand = raw.brand, category = raw.category, user_id = current_user.id )
+    raw, img_url = await asyncio.gather(identify_product(img_bytes), upload_image(img_bytes))
+    detection = Detection( name = raw.name, brand = raw.brand, category = raw.category, user_id = current_user.id,img_url=img_url )
 
     session.add(detection)
     await session.commit()

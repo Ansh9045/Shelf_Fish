@@ -15,7 +15,7 @@ const UploadComponent = () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
             allowsEditing: true,
-            quality: 1
+            quality: 0.7
         })
 
         console.log(result);

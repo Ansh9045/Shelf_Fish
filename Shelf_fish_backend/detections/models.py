@@ -11,6 +11,7 @@ class DetectionBase(SQLModel):
     name: Optional[str]
     brand: Optional[str]
     category: Optional[str]
+    img_url: Optional[str]
 
 class Detection(DetectionBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)

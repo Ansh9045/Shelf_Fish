@@ -37,5 +37,3 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], sess
     
     access_token = create_access_token(data={"sub": user.username})
     return Token(access_token=access_token)
-
-    
