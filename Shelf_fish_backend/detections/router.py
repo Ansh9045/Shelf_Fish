@@ -30,7 +30,7 @@ async def scan_product(
     
     img_bytes = await file.read()
     raw, img_url = await asyncio.gather(identify_product(img_bytes), upload_image(img_bytes))
-    detection = Detection( name = raw.name, brand = raw.brand, category = raw.category, user_id = current_user.id,img_url=img_url )
+    detection = Detection( name = raw.name, brand = raw.brand, category = raw.category, user_id = current_user.id,img_url=img_url, tags=raw.tags )
 
     session.add(detection)
     await session.commit()

@@ -5,12 +5,22 @@ import UploadComponent from "./src/components/UploadComponent";
 import Login from "./src/pages/Login";
 import { AuthProvider, useAuth } from "./src/contexts/AuthContext";
 import Home from "./src/pages/Home";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Register from "./src/pages/Register"
+import ItemCreate from "./src/pages/ItemCreate"
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
+
 
 const Stack = createNativeStackNavigator()
 
+const navTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'transparent',
+  }
+}
 
 const AppComponent = () => {
   const { isSignedIn, loading } = useAuth()
@@ -21,23 +31,35 @@ const AppComponent = () => {
     </View>
   }
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        {isSignedIn ? (
-          <>
-            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-            <Stack.Screen name="Camera" component={CameraComponent} options={{ headerShown: false }} />
-            <Stack.Screen name="Upload" component={UploadComponent} options={{ headerShown: false }} />
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-            <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
+    <SafeAreaProvider>
+      <View className="flex-1 bg-deep-red">
 
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+      <SafeAreaView className="flex-1">
+        <NavigationContainer theme={navTheme}>
+          <Stack.Navigator screenOptions={{
+            headerShown: false,
+            animation: 'fade',
+            contentStyle: { backgroundColor: 'transparent' }
+          }}>
+            {isSignedIn ? (
+              <>
+                <Stack.Screen name="ItemCreate" component={ItemCreate}/>
+                <Stack.Screen name="Home" component={Home}/>
+                <Stack.Screen name="Camera" component={CameraComponent}/>
+                <Stack.Screen name="Upload" component={UploadComponent}/>
+              </>
+            ) : (
+              <>
+                <Stack.Screen name="Login" component={Login}/>
+                <Stack.Screen name="Register" component={Register}/>
+
+              </>
+            )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaView>
+      </View>
+    </SafeAreaProvider>
   )
 
 }
@@ -47,6 +69,7 @@ export default function App() {
   return (
     <AuthProvider>
       <AppComponent />
+
     </AuthProvider>
   );
 }

@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 load_dotenv()
 URL = os.getenv("DATABASE_URL")
 
-engine = create_async_engine(URL, echo=True, future=True, pool_pre_ping=True)
+engine = create_async_engine(URL, echo=True, future=True, pool_pre_ping=True, pool_recycle=300)
 
 async def init_db():
     async with engine.begin() as conn:

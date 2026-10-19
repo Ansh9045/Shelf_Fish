@@ -2,9 +2,10 @@ import {Alert,Button, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker'
 import { uploadImage } from '../services/uploadService'
+import {useNavigation} from '@react-navigation/native'
 
 const UploadComponent = () => {
-
+    const navigation = useNavigation()
     const pickImage = async () =>{
         const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync()
         
@@ -15,11 +16,11 @@ const UploadComponent = () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
             allowsEditing: true,
-            quality: 0.7
+            quality: 0.5
         })
 
-        console.log(result);
         const r = await uploadImage(result.assets[0].uri)
+        navigation.navigate("ItemCreate", {item: r})
         console.log(r)
 
     }

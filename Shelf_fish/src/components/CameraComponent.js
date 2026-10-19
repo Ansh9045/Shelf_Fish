@@ -2,13 +2,16 @@ import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
 import { useState, useRef } from 'react'
 import { CameraView, useCameraPermissions } from 'expo-camera'
 import { uploadImage } from '../services/uploadService'
-
+import {useNavigation} from '@react-navigation/native'
 
 const CameraComponent = () => {
     const [facing, setFacing] = useState('back')
     const [permissions, requestPermissions] = useCameraPermissions();
     const [uploading, setUploading] = useState(false)
     const cameraRef = useRef(null)
+    const [item, setItem] = useState(null)
+    const navigation = useNavigation()
+
 
 
     if (!permissions) {
@@ -31,9 +34,12 @@ const CameraComponent = () => {
         if (!cameraRef.current || uploading) return
         try{
             setUploading(true)
-            const photo = await cameraRef.current.takePictureAsync({quality: 0.7})
+            const photo = await cameraRef.current.takePictureAsync({quality: 0.5})
             const r = await uploadImage(photo.uri)
             console.log(r)
+            setItem(r)
+            navigation.navigate("ItemCreate", {item: r})
+            
         } catch(e){
             console.error(`Error Uploading Image ${e}`)
         }

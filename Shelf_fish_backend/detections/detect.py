@@ -14,14 +14,16 @@ async def identify_product(img_bytes: bytes, mime_type: str="image/jpeg") -> LLM
         model=MODEL,
         contents=[
             types.Part.from_bytes(data=img_bytes, mime_type=mime_type),
-            "Identify the product in the image and provide its name, brand and category.",
-            "Base your answer on the image and do not make up any information. If you cannot identify the product, respond with 'unknown' for name, brand and category."
+            "Identify the product in the image and provide its name, brand and category",
+            "Also generate 3-6 short search tags that a shopper might use to find this exact product. Base these on what's visible in the image, but do not leave the tags list empty",
+            "If you cannot identify the product, respond with 'unknown' for name, brand and category, but still return descriptive tags based on visual appearance."
         ],
         config = types.GenerateContentConfig(
             response_mime_type="application/json",
             response_schema = LLMOutput
         )
     )
+    print(response.text)
     return response.parsed
 
 if __name__ == "__main__":

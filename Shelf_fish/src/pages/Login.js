@@ -28,15 +28,15 @@ const Login = () => {
     }
 
     return (
-        <View className="flex-1 items-center justify-center bg-red-600">
+        <View className="flex-1 items-center justify-center bg-deep-red">
             <View className="w-[90%] h-[70%] rounded-lg items-center  bg-white">
-                <Text className="text-red-800 mt-20 mb-10 font-extrabold text-6xl">Login</Text>
+                <Text className="text-deep-red mt-20 mb-10 font-extrabold text-6xl">Login</Text>
                 <TextInput 
                     placeholder='username'
                     autoCapitalize='none'
                     value={username}
                     onChangeText={setUsername}
-                    className="border border-gray-300 w-[80%] placeholder:text-red-600
+                    className="border border-gray-300 w-[80%] placeholder:text-deep-red
                     text-2xl rounded-full px-6 p-2 mb-4"
                 />
                 <TextInput 
@@ -47,10 +47,10 @@ const Login = () => {
                     value={password}
                     onChangeText={setPassword}
                     onSubmitEditing={handleLogin}
-                    className="border border-gray-300 w-[80%] placeholder:text-red-600
+                    className="border border-gray-300 w-[80%] placeholder:text-deep-red
                     text-2xl rounded-full px-6 p-2 mb-4"
                 />
-                <Pressable onPress={handleLogin} disabled={submitting} className="bg-red-600 px-4 py-2 rounded-md mt-4">
+                <Pressable onPress={handleLogin} disabled={submitting} className="bg-deep-red px-4 py-2 rounded-md mt-4">
                     <Text className="text-xl text-white font-bold">{submitting ? "Logging in....":"Login"}</Text>
                 </Pressable>
                 <Pressable onPress={()=>navigation.navigate('Register')}>
