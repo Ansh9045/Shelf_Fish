@@ -1,6 +1,7 @@
 import { StyleSheet, KeyboardAvoidingView, Platform, Text, View, Image, Pressable, Alert, ScrollView, TextInput } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { addItem } from '../services/itemService'
+import {useRoute} from '@react-navigation/native'
 
 const dummy = { "brand": "Oreo", "category": "Sandwich Cookies", "created_at": "2026-09-23T11:49:02.671240", "id": 25, "img_url": "https://res.cloudinary.com/emnvyz0h/image/upload/v1790164141/detections/m6u1ki3yiclqkkxfxfq5.jpg", "name": "Double Stuf Oreo", "tags": ["oreo", "double stuf oreo", "chocolate sandwich cookies", "creme filled cookies", "nabisco cookies"], "user_id": 2 }
 
@@ -51,8 +52,9 @@ const Field = ({ label, value, onChangeText, placeholder, className='' }) => {
   )
 }
 
-const ItemCreate = ({ route }) => {
-  const item = dummy
+const ItemCreate = () => {
+  const route = useRoute()
+  const {item} = route.params
   console.log(item)
   const [quantity, setQuantity] = useState(1)
   const [error, setError] = useState('')

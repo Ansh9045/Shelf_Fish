@@ -10,6 +10,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Register from "./src/pages/Register"
 import ItemCreate from "./src/pages/ItemCreate"
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
+import AllItems from "./src/pages/AllItems"
+import MyItems from  "./src/pages/MyItems"
+import ItemDetails from "./src/pages/ItemDetails"
+import Request from "./src/pages/Request"
+import MyRation from "./src/pages/MyRation"
 
 
 const Stack = createNativeStackNavigator()
@@ -43,10 +48,15 @@ const AppComponent = () => {
           }}>
             {isSignedIn ? (
               <>
-                <Stack.Screen name="ItemCreate" component={ItemCreate}/>
                 <Stack.Screen name="Home" component={Home}/>
+                <Stack.Screen name="ItemCreate" component={ItemCreate}/>
                 <Stack.Screen name="Camera" component={CameraComponent}/>
                 <Stack.Screen name="Upload" component={UploadComponent}/>
+                <Stack.Screen name="AllItems" component={AllItems}/>
+                <Stack.Screen name="MyItems" component={MyItems}/>
+                <Stack.Screen name="ItemDetails" component={ItemDetails}/>
+                <Stack.Screen name="Request" component={Request}/>
+                <Stack.Screen name="MyRation" component={MyRation}/>
               </>
             ) : (
               <>
